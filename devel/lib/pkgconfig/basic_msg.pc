@@ -1,0 +1,8 @@
+prefix=/home/hanbaek/ros_ws/devel
+
+Name: basic_msg
+Description: Description of basic_msg
+Version: 0.0.0
+Cflags: -I/home/hanbaek/ros_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime std_msgs

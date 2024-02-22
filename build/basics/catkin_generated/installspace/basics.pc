@@ -1,0 +1,8 @@
+prefix=/home/hanbaek/ros_ws/install
+
+Name: basics
+Description: Description of basics
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs basic_msg

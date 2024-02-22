@@ -1,0 +1,8 @@
+prefix=/home/hanbaek/ros_ws/devel
+
+Name: ta_lab5
+Description: Description of ta_lab5
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: message_runtime rospy sensor_msgs std_msgs

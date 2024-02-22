@@ -1,0 +1,7 @@
+<launch>
+    <!-- arg name="map" default="$(find particle_filter)/maps/basement_fixed.map.yaml"/-->
+    <arg name="map" default="/home/hanbaek/ros_ws/level-1(2).yaml"/>
+    <!--<arg name="map" default="$(find particle_filter)/maps/20210702_hallway_2.yaml"/>-->
+    <!--<arg name="map" default="$(find ta_lab5)/maps/mymap2.yaml"/>-->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map)" />
+</launch>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+	<include file="$(find particle_filter)/launch/localize.launch"/>
+	<include file="$(find vesc_ackermann)/launch/vesc_to_odom_node.launch"/>
+	<node pkg="hector_mapping" type="refine_lidar.py" name="lidar_refine" />
+	<node pkg="rviz" type="rviz" name="rviz" args="-d $(find particle_filter)/rviz/pf.rviz"/>
+</launch>
+  
+  
