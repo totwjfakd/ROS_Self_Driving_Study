@@ -18,9 +18,10 @@ def degTorad(deg):
     return rad + rad_diff
 
 def init_lidar(lidar_data) :
-    ld = list(lidar_data)[::-1]
-
-    return (ld[:180][::-1] + ld[180:][::-1])[::-1]
+    ld = [None for _ in range(360)]
+    for i in range(360) :
+        ld[i] = lidar_data[(180+i)%360]
+    return ld[::-1]
 
 def FGM(lidar_range_data) :
     
