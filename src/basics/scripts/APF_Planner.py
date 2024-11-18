@@ -129,11 +129,13 @@ def callback(PointCloud, global_plan, now_position) :
     ego_now_position.y = now_position.pose.pose.position.y
 
     if start_APF :
-        print(goal_position.x, goal_position.y)
+        
         attractive_force_x, attractive_force_y = calculate_attractive_force()
         repulsive_force_x, repulsive_force_y = calculate_repulsive_force(PointCloud)
         total_force_x = attractive_force_x + repulsive_force_x
         total_force_y = attractive_force_y + repulsive_force_y
+        print("attractive_force ==> ", attractive_force_x, attractive_force_y)
+        print("repulsive_force ==> ", repulsive_force_x, repulsive_force_y)
         publish_control_commands(total_force_x, total_force_y)
     else :
         print("stop")

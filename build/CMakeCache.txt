@@ -995,6 +995,12 @@ dwa_planner_SOURCE_DIR:STATIC=/home/hanbaek/ros_ws/src/dwa_planner
 //Dependencies for target
 dwa_planner_lib_LIB_DEPENDS:STATIC=
 
+//Value Computed by CMake
+gazebo_example_BINARY_DIR:STATIC=/home/hanbaek/ros_ws/build/gazebo_example
+
+//Value Computed by CMake
+gazebo_example_SOURCE_DIR:STATIC=/home/hanbaek/ros_ws/src/gazebo_example
+
 //The directory containing a CMake configuration file for gencpp.
 gencpp_DIR:PATH=/opt/ros/melodic/share/gencpp/cmake
 
@@ -1206,6 +1212,9 @@ pluginlib_DIR:PATH=/opt/ros/melodic/share/pluginlib/cmake
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/melodic/share/rosconsole/cmake
 
+//The directory containing a CMake configuration file for rosconsole_bridge.
+rosconsole_bridge_DIR:PATH=/opt/ros/melodic/share/rosconsole_bridge/cmake
+
 //The directory containing a CMake configuration file for roscpp.
 roscpp_DIR:PATH=/opt/ros/melodic/share/roscpp/cmake
 
@@ -1295,6 +1304,9 @@ tf_DIR:PATH=/opt/ros/melodic/share/tf/cmake
 
 //The directory containing a CMake configuration file for tf_conversions.
 tf_conversions_DIR:PATH=/opt/ros/melodic/share/tf_conversions/cmake
+
+//The directory containing a CMake configuration file for urdf.
+urdf_DIR:PATH=/opt/ros/melodic/share/urdf/cmake
 
 //Value Computed by CMake
 vesc_BINARY_DIR:STATIC=/home/hanbaek/ros_ws/build/vesc/vesc
@@ -1473,7 +1485,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=30
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=31
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

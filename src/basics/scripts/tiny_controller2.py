@@ -13,24 +13,14 @@ def controller():
     position_pub = rospy.Publisher('/commands/servo/position', Float64, queue_size=1)
     rospy.init_node('key_controller',anonymous=True)
     speed_pub.publish(10000)
-
-    while not rospy.is_shutdown():
-        k = ord(getch.getch())
-        if k == 113 :
-            speed_pub.publish(0)
-            exit()
-        
-        rospy.sleep(2)
-        position_pub.publish(degTorad(90))
-        rospy.sleep(1)
-        position_pub.publish(degTorad(90))
-        rospy.sleep(1)
-        position_pub.publish(degTorad(90))
-        rospy.sleep(1)
-        position_pub.publish(degTorad(90))
-        rospy.sleep(1)
-    
+    rospy.sleep(1)
+    position_pub.publish(degTorad(90))
+    rospy.sleep(1)
+    position_pub.publish(degTorad(90))
+    rospy.sleep(1)
+    position_pub.publish(degTorad(90))
+    rospy.sleep(1)
+    speed_pub.publish(0)
 
 if __name__=='__main__':
     controller()
-

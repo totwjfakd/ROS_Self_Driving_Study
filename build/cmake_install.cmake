@@ -155,6 +155,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/hanbaek/ros_ws/build/Hector_SLAM_SnSLab/hector_map_server/cmake_install.cmake")
   include("/home/hanbaek/ros_ws/build/Hector_SLAM_SnSLab/hector_trajectory_server/cmake_install.cmake")
   include("/home/hanbaek/ros_ws/build/Hector_SLAM_SnSLab/hector_mapping/cmake_install.cmake")
+  include("/home/hanbaek/ros_ws/build/gazebo_example/cmake_install.cmake")
   include("/home/hanbaek/ros_ws/build/vesc/vesc_ackermann/cmake_install.cmake")
   include("/home/hanbaek/ros_ws/build/vesc/vesc_driver/cmake_install.cmake")
 
