@@ -47,8 +47,13 @@ def callback(data):
         ge = i - 1
 
     center_idx = len(front_data) // 2
-    center_gap = (gs + ge) // 2
-    move_position = center_gap - center_idx
+    goal_gap = (gs + ge) // 2
+    move_position = goal_gap - center_idx
+    if move_position < 0 :
+        goal_gap = gs
+    elif move_position > 0 :
+        goal_gap = ge
+    
     twist = Twist()
     print(len(front_data))
 

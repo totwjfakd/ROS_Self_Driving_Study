@@ -1,6 +1,7 @@
 #!/usr/bin/env python
+import getch
 import rospy
-from std_msgs.msg import Float64
+from std_msgs.msg import Float64, Bool
 from sensor_msgs.msg import LaserScan
 import numpy as np
 def degTorad(deg):
@@ -9,19 +10,20 @@ def degTorad(deg):
     return rad + rad_diff
 
 def callback(data):
-    speed_pub = rospy.Publisher('/commands/motor/speed', Float64, queue_size=1)
-    position_pub = rospy.Publisher('/commands/servo/position', Float64, queue_size=1)
+    speed_pub = rospy.Publisher('/fgm/speed', Float64, queue_size=1)
+    position_pub = rospy.Publisher('/fgm/position', Float64, queue_size=1)
+    flag_pub = rospy.Publisher('/fgm/obstacle_flag', Bool, queue_size=1)
     range_data = list(data.ranges)[::-1]
     
     #range_data = list(data.ranges)
-    range_data = range_data[319:] + range_data[0:40]
+    range_data = range_data[324:] + range_data[0:35]
     print(np.array(range_data))
     i = 0
     gs = 0
     ge = 0
     ts = 0
 
-    t = 2.5
+    t = 2
     n = 3
     
     for data in range_data :
@@ -48,7 +50,11 @@ def callback(data):
     speed_pub.publish(6000)
 
     position_pub.publish(degTorad(move_position))
-
+    print(gs == 1, ge == len(range_data)-1)
+    if gs == 1 and ge == len(range_data)-1:
+        flag_pub.publish(False)
+    else:
+        flag_pub.publish(True)
     #range_print = [ '%.2f' % elem for elem in range_data ]
     print(gs, ge)
     print(move_position)

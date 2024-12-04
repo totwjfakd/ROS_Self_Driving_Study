@@ -3,7 +3,7 @@ import rospy
 import cv2
 import numpy as np
 from math import floor
-from std_msgs.msg import Float64
+from std_msgs.msg import Float64, Bool
 from sensor_msgs.msg import CompressedImage
 
 def degTorad(deg):
@@ -25,8 +25,9 @@ def crop_and_resize(image):
 
 
 def callback_camera(image):
-    speed_pub = rospy.Publisher('/commands/motor/speed', Float64, queue_size=1)
-    position_pub = rospy.Publisher('/commands/servo/position', Float64, queue_size=1)
+    speed_pub = rospy.Publisher('/lane/speed', Float64, queue_size=1)
+    position_pub = rospy.Publisher('/lane/position', Float64, queue_size=1)
+    lane_flag_pub = rospy.Publisher('/lane/lane_floag', Bool, queue_size=1)
 
     np_arr = np.fromstring(image.data, np.uint8) #convert byte data to numpy array
     image = cv2.imdecode(np_arr, cv2.IMREAD_COLOR) #decode image data to opencv array
@@ -52,7 +53,7 @@ def callback_camera(image):
     
     # find center of lane
     y_lane_pos = 350
-    
+
     left_lane = 0
     right_lane = bird_eye.shape[1]
     for i in range(car_center_x, bird_eye.shape[1]):
@@ -64,7 +65,10 @@ def callback_camera(image):
         if bird_eye[y_lane_pos][i] == 255:
             left_lane = i
             break
-    
+    if right_lane != bird_eye.shape[1] and left_lane != 0:
+        lane_flag_pub.publish(True)
+    else:  
+        lane_flag_pub.publish(False)
 
     x_center_lane = (right_lane + left_lane) / 2
 
@@ -79,7 +83,7 @@ def callback_camera(image):
     steering_output = degTorad(floor(steering_output))
 
     position_pub.publish(steering_output)
-    speed_pub.publish(5000)
+    speed_pub.publish(4000)
 
     cv2.drawContours(blank, contours, -1, (255, 255, 255), 1)
     cv2.imshow('contour', blank)
@@ -115,7 +119,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node("find_lane")
         global pid
-        pid = PID(0.2, 0.0001, 0.2, 30, -30)
+        pid = PID(0.22, 0.00005, 0.8, 30, -30)
         camera_sub = rospy.Subscriber("/image_jpeg/compressed", CompressedImage, callback_camera)
         rospy.spin()
     except rospy.ROSInterruptException:
